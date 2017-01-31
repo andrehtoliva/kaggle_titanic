@@ -164,11 +164,15 @@ some = []
 reg = fit_model(xtrain, ytrain)
 for i, Survived in enumerate(reg.predict(test_data)):
    print i+1,Survived
-   some.append(Survived)
+   some.append(int(Survived))
 # %%
+final = []
+for i in some:
+    final.append(int(i))
+print final
 submission = pd.DataFrame({
        "PassengerId": test_data["PassengerId"],
-       "Survived": some
+       "Survived": final
    })
 print submission
 submission.to_csv("kaggle2.csv", index=False)
